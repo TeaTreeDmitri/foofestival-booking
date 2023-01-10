@@ -3,12 +3,15 @@ import Layout from "../components/Layout.jsx";
 import App from "next/app";
 import { useEffect, useState } from "react";
 
+
 function MyApp({ Component, pageProps }) {
   // global object for the user's order
   const [orderInfo, setOrderInfo] = useState({
     vipTickets: 0,
     regTickets: 0,
     totalTickets: 0,
+
+    countdown: 0,
 
     selectedArea: "",
     tentService: false,
@@ -18,6 +21,9 @@ function MyApp({ Component, pageProps }) {
     orderID: "",
     guests: [],
   });
+
+  //TODO booking timer to be passed between pages as props
+  
 
   //everytime either reg tickets or vip tickets are updated, update total tickets too
   useEffect(() => {

@@ -177,7 +177,6 @@ footer {
   color: $white;
   border-color: $white;
   overflow: hidden;
-
   width: fit-content;
   height: 2.8rem;
 }
@@ -199,6 +198,10 @@ footer {
   justify-content: space-between;
   margin: 1rem;
   align-items: flex-end;
+}
+
+.splashCont {
+  margin: auto;
 }
 
 // button hover effects

@@ -1,16 +1,23 @@
 import React from "react";
+import Timeout from "./UI-components/Timeout";
+import { useEffect, useState } from "react";
 
 function OrderOverview(props) {
+
+
   // console.log("from orderOverview", props.orderInfo.regTickets);
   let totalVIP = 1299 * props.orderInfo.vipTickets;
   let totalReg = 799 * props.orderInfo.regTickets;
   let greenPrice = 249;
   let grandTotal = totalVIP + totalReg + 99;
 
+  
+
   return (
     <div className="order-overview">
       <h3>Your order</h3>
-      <h5>Your tickets are reserved for 5 minutes.</h5>
+      <Timeout/>
+
 
       {/* SELECTED TICKETS */}
 
