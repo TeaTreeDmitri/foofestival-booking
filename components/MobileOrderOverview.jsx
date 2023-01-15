@@ -1,6 +1,13 @@
 import React from "react";
+import { useContext } from "react";
+import { TimerContext } from "./contexts/TimerContext";
+
 
 function OrderOverview(props) {
+
+  //timer from context
+  const timeLeft = useContext(TimerContext);
+
   // drop down functionality
   const toggleOrderOverview = () => {
     document.querySelector(".order-overview").classList.toggle("hidden");
@@ -29,7 +36,7 @@ function OrderOverview(props) {
       </div>
 
       <div className="order-overview hidden">
-        <h5>Your tickets are reserved for 5 minutes.</h5>
+        <h5>Your tickets are only reserved for {timeLeft}</h5>
 
         {/* SELECTED TICKETS */}
 

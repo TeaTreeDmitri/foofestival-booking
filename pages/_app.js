@@ -2,6 +2,7 @@ import "../styles/globals.scss";
 import Layout from "../components/Layout.jsx";
 import App from "next/app";
 import { useEffect, useState } from "react";
+import { TimerProvider } from "../components/contexts/TimerContext";
 
 
 function MyApp({ Component, pageProps }) {
@@ -10,8 +11,6 @@ function MyApp({ Component, pageProps }) {
     vipTickets: 0,
     regTickets: 0,
     totalTickets: 0,
-
-    countdown: 0,
 
     selectedArea: "",
     tentService: false,
@@ -23,7 +22,40 @@ function MyApp({ Component, pageProps }) {
   });
 
   //TODO booking timer to be passed between pages as props
+//   //context providor for timer
+//   const [timeLeft, setTimeLeft] = useState();
+//     //timer function of 5 minutes until successful purchase
+//   const second = 1000;
+//   const minute = second * 60;
+//   // initialise timer count
+//   let timer = minute * 5;
+//   let minutes = "0";
+//   let seconds = "00";
   
+// //   timeout function
+//   function purchaseTimer() {
+//     if (timer > 0) {
+//         timer = timer-second;
+//         minutes = Math.floor(timer / minute);
+//         seconds = Math.floor((timer % minute) / second);
+//         //send data to context
+//         console.log(`${minutes}:${seconds}`);
+//         //formatting of seconds to minutes and seconds as a string
+//         return (`${minutes}:${seconds}`);
+//         } else {
+//             alert("you ran out of tiiiime bitch")
+//         }
+//     }
+
+//     useEffect(() => {
+//       const interval = setInterval(() => setTimeLeft(purchaseTimer()), 1000);
+//       return () => {
+//         clearInterval(interval);
+//     };
+//     }, 
+//     []);
+  
+
 
   //everytime either reg tickets or vip tickets are updated, update total tickets too
   useEffect(() => {
@@ -94,6 +126,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Layout>
+        <TimerProvider>
         <Component
           updateRegTickets={updateRegTickets}
           updateVIPTickets={updateVIPTickets}
@@ -108,6 +141,7 @@ function MyApp({ Component, pageProps }) {
           setOrderInfo={setOrderInfo}
           setOrderID={setOrderID}
         />
+        </TimerProvider>
       </Layout>
     </>
   );
