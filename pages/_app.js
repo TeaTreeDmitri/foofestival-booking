@@ -2,7 +2,7 @@ import "../styles/globals.scss";
 import Layout from "../components/Layout.jsx";
 import App from "next/app";
 import { useEffect, useState } from "react";
-import { TimerProvider } from "../components/contexts/TimerContext";
+import { useRouter } from "next/router";
 
 
 function MyApp({ Component, pageProps }) {
@@ -21,7 +21,50 @@ function MyApp({ Component, pageProps }) {
     guests: [],
   });
 
-  //if timer can be started (after step 1)
+  const [timeLeft, setTimeLeft] = useState("HELLO");
+
+  //timer function for nav bar
+  
+  //timer function of 5 minutes until successful purchase
+  const second = 1000;
+  const minute = second * 60;
+  const router = useRouter();
+  
+  // initialise timer count
+  let timer = minute * 5;
+  let minutes = "0";
+  let seconds = "00";
+  
+  //   purchase timeout function
+  function purchaseTimer() {
+    if (orderInfo.validates === true) { 
+      if (timer > 0) {
+          timer = timer-second;
+          minutes = Math.floor(timer / minute);
+          seconds = Math.floor((timer % minute) / second);
+
+          //create double digits in seconds < 10
+          if((seconds+"").length === 1){
+            seconds = "0"+ seconds;
+        }
+
+          //formatting of seconds to minutes and seconds as a string
+         
+          return (`you have ${minutes}:${seconds} left to finish your purchase`);
+          } else {
+              router.push("/tickets/timeout");
+              timer = minute * 5;
+          }
+        }
+      }
+  
+      useEffect(() => {
+        const interval = setInterval(() => setTimeLeft(purchaseTimer()), 1000);
+        return () => {
+          clearInterval(interval);
+      };
+      }, 
+      [orderInfo]);
 
 
   //everytime either reg tickets or vip tickets are updated, update total tickets too
@@ -92,13 +135,12 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
-      <Layout>
-        <TimerProvider >
+      <Layout timeLeft={timeLeft}>
         <Component
           updateRegTickets={updateRegTickets}
           updateVIPTickets={updateVIPTickets}
-          {...pageProps}
           orderInfo={orderInfo}
+          {...pageProps}
           tentSetUp={tentSetUp}
           tentGreen={tentGreen}
           selectArea={selectArea}
@@ -108,7 +150,6 @@ function MyApp({ Component, pageProps }) {
           setOrderInfo={setOrderInfo}
           setOrderID={setOrderID}
         />
-        </TimerProvider>
       </Layout>
     </>
   );

@@ -26,6 +26,9 @@ function Splash() {
         hours = Math.floor((timeSpan % day) / hour);
         minutes = Math.floor((timeSpan % hour) / minute);
         seconds = Math.floor((timeSpan % minute) / second);
+        if((seconds+"").length === 1){
+          seconds = "0"+ seconds;
+      }
         setClockDisplay(`${days}:${hours}:${minutes}:${seconds}`);
       } else {
         setClockDisplay("has begun..")

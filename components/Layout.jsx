@@ -4,7 +4,9 @@ import Footer from "./Footer";
 import Head from "next/head";
 import favicon from "../assets/foofest-favicon.png";
 
-function Layout({ children }) {
+function Layout(props) {
+
+  // console.log("Layout level: ", props.timeLeft);
   return (
     <>
       <Head>
@@ -12,8 +14,8 @@ function Layout({ children }) {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <link rel="shortcut icon" type="image/jpg" src={favicon} />
       </Head>
-      <Nav />
-      <main>{children}</main>
+      <Nav timeLeft={props.timeLeft}/>
+      <main>{props.children}</main>
       <Footer />
     </>
   );

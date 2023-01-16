@@ -9,9 +9,9 @@ function Nav(props) {
       <Link href={"/"}>
         <Image src={Logo} alt="Foofest logo" className="logo" />
       </Link>
-      <Link href={"/tickets/step1"} className={"primary"}>
-        Get tickets
-      </Link>
+      {/* show timer */}
+      <h5>{props.timeLeft}</h5>
+      
     </nav>
   );
 }

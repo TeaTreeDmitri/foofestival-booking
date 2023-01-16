@@ -1,9 +1,7 @@
 import React from "react";
 import { useEffect, useState, useContext } from "react";
-import { TimerContext } from "./contexts/TimerContext";
-function OrderOverview(props) {
 
-  const timeLeft = useContext(TimerContext);
+function OrderOverview(props) {
 
   // console.log("from orderOverview", props.orderInfo.regTickets);
   let totalVIP = 1299 * props.orderInfo.vipTickets;
@@ -15,7 +13,6 @@ function OrderOverview(props) {
   return (
     <div className="order-overview">
       <h3>Your order</h3>
-      <h5>Your tickets are only reserved for {timeLeft}</h5>
 
 
       {/* SELECTED TICKETS */}
