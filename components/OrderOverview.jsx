@@ -8,7 +8,6 @@ function OrderOverview(props) {
   // console.log("from orderOverview", props.orderInfo.regTickets);
   let totalVIP = 1299 * props.orderInfo.vipTickets;
   let totalReg = 799 * props.orderInfo.regTickets;
-  let greenPrice = 249;
   let grandTotal = totalVIP + totalReg + 99;
 
   

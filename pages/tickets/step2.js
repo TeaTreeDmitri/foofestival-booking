@@ -47,6 +47,7 @@ function step2(props) {
           Back
         </button>
         <button className="primary" onClick={nextStep}>
+
           Continue to details →
         </button>
       </div>

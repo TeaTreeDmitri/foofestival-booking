@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }) {
     vipTickets: 0,
     regTickets: 0,
     totalTickets: 0,
-
+    ticketsValid: false,
     selectedArea: "",
     tentService: false,
     greenCamping: false,
@@ -21,40 +21,7 @@ function MyApp({ Component, pageProps }) {
     guests: [],
   });
 
-  //TODO booking timer to be passed between pages as props
-//   //context providor for timer
-//   const [timeLeft, setTimeLeft] = useState();
-//     //timer function of 5 minutes until successful purchase
-//   const second = 1000;
-//   const minute = second * 60;
-//   // initialise timer count
-//   let timer = minute * 5;
-//   let minutes = "0";
-//   let seconds = "00";
-  
-// //   timeout function
-//   function purchaseTimer() {
-//     if (timer > 0) {
-//         timer = timer-second;
-//         minutes = Math.floor(timer / minute);
-//         seconds = Math.floor((timer % minute) / second);
-//         //send data to context
-//         console.log(`${minutes}:${seconds}`);
-//         //formatting of seconds to minutes and seconds as a string
-//         return (`${minutes}:${seconds}`);
-//         } else {
-//             alert("you ran out of tiiiime bitch")
-//         }
-//     }
-
-//     useEffect(() => {
-//       const interval = setInterval(() => setTimeLeft(purchaseTimer()), 1000);
-//       return () => {
-//         clearInterval(interval);
-//     };
-//     }, 
-//     []);
-  
+  //if timer can be started (after step 1)
 
 
   //everytime either reg tickets or vip tickets are updated, update total tickets too
@@ -126,7 +93,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Layout>
-        <TimerProvider>
+        <TimerProvider >
         <Component
           updateRegTickets={updateRegTickets}
           updateVIPTickets={updateVIPTickets}
@@ -146,5 +113,6 @@ function MyApp({ Component, pageProps }) {
     </>
   );
 }
+
 
 export default MyApp;
